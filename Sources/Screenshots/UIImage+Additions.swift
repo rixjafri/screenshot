@@ -14,6 +14,12 @@ extension UIImage {
     ///   - size: The size for this image
     /// - Returns: An image filled with the given color
     class func imageWithColor(color: UIColor, size: CGSize) -> UIImage? {
+        // Check for valid size
+        guard size.width > 0, size.height > 0 else {
+            print("Invalid size: \(size). Width and height must be greater than zero.")
+            return nil // Return nil if size is invalid
+        }
+
         UIGraphicsBeginImageContextWithOptions(size, false, UIScreen.main.scale)
         guard let context = UIGraphicsGetCurrentContext() else {
             return nil
@@ -25,6 +31,7 @@ extension UIImage {
         UIGraphicsEndImageContext()
         return image
     }
+
 }
 
 extension UIImage {
